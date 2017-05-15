@@ -5,6 +5,7 @@
  */
 package Search;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,7 +27,7 @@ public class DriverSetup {
 
     @BeforeClass
     public static void setUp() {
-        GetDriver(1);
+        GetDriver(2);
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.MINUTES);
@@ -49,17 +50,25 @@ public class DriverSetup {
 
                 case 2:
                     // For Chrome Driver
+                   File file = new File("src/main/resources/chromedriver.exe");
+                    String absolutePath = file.getAbsolutePath();
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("chrome.switches", "--disable-extensions");
-                    System.setProperty("webdriver.chrome.driver",
-                            "D:\\selenium-java-2.31.0\\chromedriver_win32\\chromedriver.exe");
+                    options.addArguments("chrome.switches", "--disable-extensions");                    
+                    System.setProperty("webdriver.chrome.driver",absolutePath);
+                    
+                     // System.setProperty("webdriver.chrome.driver",
+                     //       "D:\\NetBeansProjects\\Max-IDS4.0\\src\\main\\resources\\chromedriver.exe");
+                    
+                    
                     driver = new ChromeDriver(options);
                     break;
 
                 case 3:
                     // For IE Driver
+                     File file1 = new File ("src/main/resources/IEDriverServer.exe");
+                    String absolutePath1 = file1.getAbsolutePath();
                     System.setProperty("webdriver.ie.driver",
-                            "D:\\selenium-java-2.31.0\\IEDriverServer.exe");
+                            absolutePath1);
                     driver = new InternetExplorerDriver();
             }
         }

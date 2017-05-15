@@ -48,6 +48,9 @@ public class Dashboard extends PageObject {
 
     @FindBy(how = How.ID, using = "btnSearch")
     public WebElement searchSubmit;
+    
+    @FindBy(how = How.ID, using = "test")
+    public WebElement fgh;
 
     public SearchList submitFullTextSearchQueryFromDashboard() {
         pleaseWaitForPageLoad();
